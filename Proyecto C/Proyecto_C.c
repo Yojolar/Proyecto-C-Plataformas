@@ -13,6 +13,7 @@ static int control_boton21 = 0;
 static int control_boton22 = 0;
 // Como regla tipica del juego gato, la X siempre inicia,
 // impar = 'X' y par = 'O'.
+static int juego_terminado = 0;
 static int control_jugador = 0;
 static int control_ganador = 0;
 static int ganadorO = 0;
@@ -23,7 +24,7 @@ static int tablero[3][3]= {
   {0, 0, 0}
 };
 
-void alguien_gano(){
+int alguien_gano(){
   if (tablero[0][0] == tablero[0][1] && tablero[0][0] == tablero[0][2] && tablero[0][0] != 0 ||
     tablero[1][0] == tablero[1][1] && tablero[1][0] == tablero[1][2] && tablero[1][0] != 0 ||
     tablero[2][0] == tablero[2][1] && tablero[2][0] == tablero[2][2] && tablero[2][0] != 0 ||
@@ -50,6 +51,7 @@ void alguien_gano(){
         control_boton21 = 1;
         control_boton22 = 1;
         ganadorO = 1;
+        return 1;
       }
       else{
         printf("\nGanaron las equis\n");
@@ -63,7 +65,10 @@ void alguien_gano(){
         control_boton21 = 1;
         control_boton22 = 1;
         ganadorX = 1;
+        return 2;
       }
+  }else {
+      return 0;
   }
 }
 
@@ -177,7 +182,13 @@ int main(int argc, char* argv[]) {
         }
       }
       // Se revisa si alguien ha ganado
-      alguien_gano();
+      juego_terminado = alguien_gano();
+      if (juego_terminado == 1){
+          gtk_label_set_text(label, "El jugador O Gano");
+      }
+      if (juego_terminado == 2){
+          gtk_label_set_text(label, "El jugador X Gano");
+      }
 
     }
 
@@ -206,7 +217,13 @@ int main(int argc, char* argv[]) {
         }
       }
       // Se revisa si alguien ha ganado
-      alguien_gano();
+      juego_terminado = alguien_gano();
+      if (juego_terminado == 1){
+          gtk_label_set_text(label, "El jugador O Gano");
+      }
+      if (juego_terminado == 2){
+          gtk_label_set_text(label, "El jugador X Gano");
+      }
 
     }
 
@@ -236,7 +253,13 @@ int main(int argc, char* argv[]) {
         }
       }
       // Se revisa si alguien ha ganado
-      alguien_gano();
+      juego_terminado = alguien_gano();
+      if (juego_terminado == 1){
+          gtk_label_set_text(label, "El jugador O Gano");
+      }
+      if (juego_terminado == 2){
+          gtk_label_set_text(label, "El jugador X Gano");
+      }
 
     }
 
@@ -265,7 +288,13 @@ int main(int argc, char* argv[]) {
         }
       }
       // Se revisa si alguien ha ganado
-      alguien_gano();
+      juego_terminado = alguien_gano();
+      if (juego_terminado == 1){
+          gtk_label_set_text(label, "El jugador O Gano");
+      }
+      if (juego_terminado == 2){
+          gtk_label_set_text(label, "El jugador X Gano");
+      }
 
     }
 
@@ -294,7 +323,13 @@ int main(int argc, char* argv[]) {
         }
       }
       // Se revisa si alguien ha ganado
-      alguien_gano();
+      juego_terminado = alguien_gano();
+      if (juego_terminado == 1){
+          gtk_label_set_text(label, "El jugador O Gano");
+      }
+      if (juego_terminado == 2){
+          gtk_label_set_text(label, "El jugador X Gano");
+      }
 
     }
 
@@ -323,7 +358,13 @@ int main(int argc, char* argv[]) {
         }
       }
       // Se revisa si alguien ha ganado
-      alguien_gano();
+      juego_terminado = alguien_gano();
+      if (juego_terminado == 1){
+          gtk_label_set_text(label, "El jugador O Gano");
+      }
+      if (juego_terminado == 2){
+          gtk_label_set_text(label, "El jugador X Gano");
+      }
 
     }
 
@@ -352,7 +393,13 @@ int main(int argc, char* argv[]) {
         }
       }
       // Se revisa si alguien ha ganado
-      alguien_gano();
+      juego_terminado = alguien_gano();
+      if (juego_terminado == 1){
+          gtk_label_set_text(label, "El jugador O Gano");
+      }
+      if (juego_terminado == 2){
+          gtk_label_set_text(label, "El jugador X Gano");
+      }
 
     }
 
@@ -381,7 +428,13 @@ int main(int argc, char* argv[]) {
         }
       }
       // Se revisa si alguien ha ganado
-      alguien_gano();
+      juego_terminado = alguien_gano();
+      if (juego_terminado == 1){
+          gtk_label_set_text(label, "El jugador O Gano");
+      }
+      if (juego_terminado == 2){
+          gtk_label_set_text(label, "El jugador X Gano");
+      }
 
     }
 
@@ -410,7 +463,13 @@ int main(int argc, char* argv[]) {
         }
       }
       // Se revisa si alguien ha ganado
-      alguien_gano();
+      juego_terminado = alguien_gano();
+      if (juego_terminado == 1){
+          gtk_label_set_text(label, "El jugador O Gano");
+      }
+      if (juego_terminado == 2){
+          gtk_label_set_text(label, "El jugador X Gano");
+      }
 
     }
 
@@ -457,6 +516,7 @@ int main(int argc, char* argv[]) {
       gtk_button_set_image (GTK_BUTTON (boton_20), imageVacio7);
       gtk_button_set_image (GTK_BUTTON (boton_21), imageVacio8);
       gtk_button_set_image (GTK_BUTTON (boton_22), imageVacio9);
+      gtk_label_set_text(label, "Presione cualquier tecla para iniciar");
     }
 
     // Se define el void para cuando se estripa el boton de salir
